@@ -48,7 +48,13 @@ export default {
 </script>
 
 <style>
-#app, #modals {
+
+/** * this is my regular comment
+* ! This is red comments 
+* ? this is my blue comment
+* todo: this is a todo text */
+
+#app, #modals { 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
