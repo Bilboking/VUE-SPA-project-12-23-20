@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }}</h1><br>
-    <div v-if="showModal">
+    <teleport to="#modals" v-if="showModal">
        <Modal theme="sale" @close="toggleModal">
         <template v-slot:links>
           <a href="#">Sign up now!</a>
@@ -9,8 +9,16 @@
           <h1>Sign up for Bruce's newsletter!</h1>
           <p>Get incredible information delivered to your inbox!</p>
         </Modal>
-    </div>
-    <button @click.alt="toggleModal">open modal (alt)</button>
+    </teleport>
+
+    <teleport to="#modals" v-if="showModalTwo">
+       <Modal @close="toggleModalTwo">
+          <h1>Today's News</h1>
+          <p>All the latest information!</p>
+        </Modal>
+    </teleport>
+    <button @click="toggleModal">open modal one</button>
+    <button @click="toggleModalTwo">open modal two</button>
  <!-- <input type="text" ref="name" >
   <button @click="handleClick">click me</button>-->
 </template>
@@ -24,21 +32,23 @@ export default {
   data(){
     return {
       title: 'My First Vue App :)',
-      header: "Sign up for Bruce's newsletter!",
-      text: "Get incredible information delivered to your inbox!",
-      showModal: false
+      showModal: false,
+      showModalTwo: false
     }
   },
   methods: {
     toggleModal(){
       this.showModal = !this.showModal
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
 </script>
 
 <style>
-#app {
+#app, #modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
