@@ -1,6 +1,16 @@
 <template>
   <h1>{{ title }}</h1><br>
-  <Modal />
+    <div v-if="showModal">
+       <Modal theme="sale" @close="toggleModal">
+        <template v-slot:links>
+          <a href="#">Sign up now!</a>
+          <a href="#">more info</a>
+        </template>
+          <h1>Sign up for Bruce's newsletter!</h1>
+          <p>Get incredible information delivered to your inbox!</p>
+        </Modal>
+    </div>
+    <button @click.alt="toggleModal">open modal (alt)</button>
  <!-- <input type="text" ref="name" >
   <button @click="handleClick">click me</button>-->
 </template>
@@ -13,14 +23,15 @@ export default {
   components: { Modal },
   data(){
     return {
-      title: 'My First Vue App :)'
+      title: 'My First Vue App :)',
+      header: "Sign up for Bruce's newsletter!",
+      text: "Get incredible information delivered to your inbox!",
+      showModal: false
     }
   },
   methods: {
-    handleClick(){
-      console.log(this.$refs.name)
-      this.$refs.name.classList.add('active')
-      this.$refs.name.focus()
+    toggleModal(){
+      this.showModal = !this.showModal
     }
   }
 }
